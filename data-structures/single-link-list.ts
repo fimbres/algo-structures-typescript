@@ -109,9 +109,9 @@ class LinkedList {
   }
 
   insert(value: number, index: number) {
-    if(index < 0 || index >= this.length) return false;
+    if(index < 0 || index > this.length) return false;
 
-    if(index === this.length - 1){
+    if(index === this.length){
       this.push(value);
     }
     else if(index === 0) {
