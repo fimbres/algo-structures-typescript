@@ -1,13 +1,22 @@
-function hash(value: string, index: number) {
-  let total = 0;
+class HashTable {
+  keyMap: number[];
 
-  for(let letter of value) {
-    let aux = letter.charCodeAt(0) - 96;
-
-    total = (total + aux) % index;
+  constructor(size: number = 53) {
+    this.keyMap = new Array(size);
   }
 
-  return total;
+  _hash(key: string) {
+    let total = 0;
+    const PRIME_KEY = 31;
+
+    for(let i = 0; i < Math.min(key.length, 53); i++) {
+      let value = key.charCodeAt(i) - 96;
+
+      total = (total + PRIME_KEY + value) & this.keyMap.length;
+    }
+
+    return total;
+  }
 }
 
-console.log(hash("pink", 4));
+let hashTable = new HashTable();
